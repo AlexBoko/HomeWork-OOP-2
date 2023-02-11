@@ -1,3 +1,4 @@
+import transport.Bus;
 import transport.Car;
 
 public class Main {
@@ -9,6 +10,7 @@ public class Main {
                 "Yellow",
                 2015,
                 "Russia",
+                200,
                 "МКПП",
                 "Sedan",
                 "е777кх000",
@@ -24,6 +26,7 @@ public class Main {
                 "Black",
                 2020,
                 "Germany",
+                260,
                 "АКПП",
                 "Sedan",
                 "a000oo000",
@@ -39,6 +42,7 @@ public class Main {
                 "Black",
                 2021,
                 "Germany",
+                240,
                 "МКПП",
                 "Kupe",
                 "o999oo000",
@@ -56,6 +60,7 @@ public class Main {
                 "Red",
                 2018,
                 "South Korea",
+                160,
                 "MKПП",
                 "Sedan",
                 "e666кх000",
@@ -73,6 +78,7 @@ public class Main {
                 "Orange",
                 2016,
                 "South Korea",
+                280,
                 "АКПП",
                 "Купе",
                 "o444oo444",
@@ -81,5 +87,16 @@ public class Main {
                 new Car.Key(false, true));
 
         System.out.println(hyundai);
+
+        for (int i = 1; i <= 3; i++) {
+            Bus bus = new Bus(
+                    "Bus brand №" +i,
+                    "Bus model №" +i,
+                    2017 + i,
+                    "Россия",
+                    "Зеленый",
+                    120);
+            System.out.println(bus);
+        }
     }
 }
