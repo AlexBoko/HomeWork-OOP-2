@@ -1,14 +1,12 @@
 package transport;
 
-public class Transport {
+public abstract class Transport <T extends Driver> implements Competing {
     private final String brand;
     private final String model;
-    private final int year;
-    private final String country;
-    private String color;
-    private String maxSpeed;
+    private double engineVolume;
+    private T driver;
 
-    public Transport(String brand, String model, int year, String country, String color, int maxSpeed) {
+    public Transport(String brand, String model, double engineVolume, T driver) {
         if (brand == null || brand.isEmpty()) {
             brand = "default";
         }
@@ -17,16 +15,9 @@ public class Transport {
             model = "default";
         }
         this.model = model;
-        if (year <= 0) {
-            year = 2000;
-        }
-        this.year = year;
-        if (country == null || country.isEmpty()) {
-            country = "default";
-        }
-        this.country = country;
-        setColor(color);
-        setMaxSpeed(Integer.parseInt(String.valueOf(maxSpeed)));
+        setEngineVolume(engineVolume);
+        setDriver(driver);
+
     }
 
 
@@ -38,45 +29,36 @@ public class Transport {
         return model;
     }
 
-    public int getYear() {
-        return year;
+    public double getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        if (color == null || color.isEmpty()) {
-            color = "White";
+    public void setEngineVolume(double engineVolume) {
+        if (engineVolume <= 0) {
+            engineVolume = 1.6;
         }
-        this.color = color;
+        this.engineVolume = engineVolume;
     }
 
-    public String getMaxSpeed() {
-        return maxSpeed;
+    public T getDriver() {
+        return driver;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
-        if (maxSpeed <= 0) {
-            maxSpeed = 120;
-        }
-        this.maxSpeed = String.valueOf(maxSpeed);
+    public void setDriver(T driver) {
+        this.driver = driver;
     }
+
+    public abstract void startMove();
+
+    public abstract void finishMuve();
 
     @Override
     public String toString() {
         return "transport.Car{" +
                 "Марка = '" + brand + '\'' +
                 ", Модель = '" + model + '\'' +
-                ", Цвет кузова = '" + color + '\'' +
-                ", Год производства = " + year +
-                ", Страна сборки = '" + country + '\'' +
-                ", Максимальная скорость = '" + maxSpeed;
+                ", Объем двигателя = '" + engineVolume;
+
     }
 }
 
